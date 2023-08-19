@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Chivo } from 'next/font/google'
+import Image from 'next/image'
 import './globals.css'
 
 const chivo = Chivo({ subsets: ['latin'] })
@@ -17,8 +18,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body
-				className={`${chivo.className} relative bg-navy-black min-h-screen scroll-smooth`}>
+			<body className={`${chivo.className} md:bg-navy-black`}>
 				{children}
 			</body>
 		</html>

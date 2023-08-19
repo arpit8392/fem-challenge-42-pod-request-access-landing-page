@@ -25,7 +25,7 @@ const podcastsData = [
 
 const Podcasts = () => {
 	return (
-		<ul className='flex items-center gap-6 flex-wrap md:gap-10'>
+		<ul className='flex items-center gap-6 flex-wrap md:gap-10 opacity-50'>
 			{podcastsData.map((item) => (
 				<li key={item.name}>
 					<Image src={item.logo} alt={item.name} className='object-contain' />

@@ -14,6 +14,8 @@ const config: Config = {
 				'navy-black': '#121725',
 				'slate-blue': '#5A668A',
 				'pastel-blue': '#C2CBE5',
+				'vibrant-red': '#FB3E3E',
+				'mint-green': '#B3FFE2'
 			},
 			backgroundImage: {
 				dots: 'url("/assets/desktop/bg-pattern-dots.svg")',

@@ -7,7 +7,7 @@ import * as z from 'zod'
 const formSchema = z.object({
 	email: z
 		.string()
-		.min(4, { message: 'Oops! Please add your email' })
+		.min(1, { message: 'Oops! Please add your email' })
 		.email({ message: 'Oops! Please check your email' }),
 })
 
@@ -37,7 +37,7 @@ const CTAForm = () => {
 			<label htmlFor='email' className='sr-only'>
 				Email Address
 			</label>
-			<div className='relative flex flex-col gap-4 '>
+			<div className='relative flex flex-col md:flex-row md:items-center md:gap-0 gap-4 '>
 				<input
 					type='email'
 					id='email'
@@ -48,14 +48,14 @@ const CTAForm = () => {
 				/>
 				<button
 					type='submit'
-					className='text-navy-black text-center w-full bg-aqua text-sm/7 rounded-[28px] md:w-fit py-2 font-semibold hover:bg-[#B3FFE2] md:absolute md:inset-y-0 right-2 md:px-7'>
+					className='text-navy-black text-center w-full bg-aqua text-sm/7 rounded-[28px] md:w-fit py-2 font-semibold hover:bg-mint-green md:absolute  right-1.5 md:px-7'>
 					Request Access
 				</button>
 			</div>
 			{errors.email && (
 				<p
 					role='alert'
-					className='text-[#FB3E3E] text-sm mt-2 text-center md:text-start'>
+					className='text-vibrant-red text-sm mt-2 text-center md:text-start'>
 					{errors.email.message}
 				</p>
 			)}

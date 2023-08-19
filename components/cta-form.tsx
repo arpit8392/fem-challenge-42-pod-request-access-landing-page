@@ -12,40 +12,53 @@ const formSchema = z.object({
 })
 
 const CTAForm = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<z.infer<typeof formSchema>>({
+	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '',
 		},
 	})
 
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = form
+
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		console.log(values)
-		values.email = ''
+		form.reset()
 	}
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className='w-full flex flex-col gap-4 md:flex-row md:gap-0'>
+			className='w-full md:max-w-lg'
+			noValidate>
 			<label htmlFor='email' className='sr-only'>
 				Email Address
 			</label>
-			<input
-				type='email'
-				id='email'
-				className='block w-full rounded-3xl bg-midnight-blue py-2 pl-8 text-white placeholder:opacity-50 font-semibold text-sm/7 caret-white outline-none'
-				placeholder='Email address'
-				{...register('email')}
-			/>
-			<button
-				type='submit'
-				className='text-navy-black text-center w-full bg-aqua text-sm/7 rounded-3xl md:w-fit py-2 font-semibold hover:bg-[#B3FFE2]'>
-				Request Access
-			</button>
+			<div className='relative flex flex-col gap-4 '>
+				<input
+					type='email'
+					id='email'
+					aria-invalid={errors.email ? 'true' : 'false'}
+					className='block w-full rounded-[28px] bg-midnight-blue py-2 pl-8 text-white placeholder:opacity-50 font-semibold text-sm/7 caret-white outline-none md:py-4'
+					placeholder='Email address'
+					{...register('email')}
+				/>
+				<button
+					type='submit'
+					className='text-navy-black text-center w-full bg-aqua text-sm/7 rounded-[28px] md:w-fit py-2 font-semibold hover:bg-[#B3FFE2] md:absolute md:inset-y-0 right-2 md:px-7'>
+					Request Access
+				</button>
+			</div>
+			{errors.email && (
+				<p
+					role='alert'
+					className='text-[#FB3E3E] text-sm mt-2 text-center md:text-start'>
+					{errors.email.message}
+				</p>
+			)}
 		</form>
 	)
 }
